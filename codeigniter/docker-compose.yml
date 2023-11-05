@@ -11,7 +11,10 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_USER=bn_myapp
       - MARIADB_DATABASE=bitnami_myapp
-  myapp:
+    ports:
+      - '3306:3306'
+
+  backend:
     image: docker.io/bitnami/codeigniter:4
     ports:
       - '8000:8000'
@@ -22,7 +25,8 @@ services:
       - CODEIGNITER_DATABASE_PORT_NUMBER=3306
       - CODEIGNITER_DATABASE_USER=bn_myapp
       - CODEIGNITER_DATABASE_NAME=bitnami_myapp
+      - CODEIGNITER_PROJECT_NAME=backend
     volumes:
-      - './backend:/app'
+      - './:/app'
     depends_on:
       - mariadb

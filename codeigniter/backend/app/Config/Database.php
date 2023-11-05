@@ -26,10 +26,10 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => 'localhost',
-        'username'     => '',
+        'hostname'     => 'mariadb',
+        'username'     => 'bn_myapp',
         'password'     => '',
-        'database'     => '',
+        'database'     => 'bitnami_myapp',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

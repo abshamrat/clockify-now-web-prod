@@ -17,9 +17,9 @@ class SigninController extends Controller
         $userModel = new UserModel();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
-        
+
         $data = $userModel->where('email', $email)->first();
-        
+
         if($data){
             $pass = $data['password'];
             $authenticatePassword = password_verify($password, $pass);

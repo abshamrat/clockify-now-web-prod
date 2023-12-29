@@ -19,11 +19,13 @@ class UsersController extends BaseController
 
         return $this->respond($data);
     }
+
     public function userProfile()
     {
         $data = [
-            'success' => true,
-            'id'      => 123,
+            'id'                    => 123,
+            'user_full_name'        => 'Abu Bakar Siddique',
+            'profile_image_url'     => 'https://placehold.co/128x128?font=roboto',
         ];
         return $this->response->setJSON($data);
     }

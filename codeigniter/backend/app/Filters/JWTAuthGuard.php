@@ -3,8 +3,10 @@ namespace App\Filters;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
-class AuthGuard implements FilterInterface
+class JWTAuthGuard implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -37,7 +39,7 @@ class AuthGuard implements FilterInterface
         // check if token is null or empty
         if(is_null($token) || empty($token)) {
             $response = service('response');
-            $response->setBody('Access denied');
+            $response->setBody('Access denied2');
             $response->setStatusCode(401);
             return $response;
         }
@@ -47,7 +49,7 @@ class AuthGuard implements FilterInterface
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
         } catch (Exception $ex) {
             $response = service('response');
-            $response->setBody('Access denied');
+            $response->setBody('Access denied1');
             $response->setStatusCode(401);
             return $response;
         }

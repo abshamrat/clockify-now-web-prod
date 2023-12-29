@@ -1,0 +1,24 @@
+CRITICAL - 2023-12-29 02:56:16 --> Class "App\Filters\AuthFilter" not found
+in SYSTEMPATH/Filters/Filters.php on line 173.
+ 1 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 2 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 3 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-29 02:59:32 --> Class "App\Filters\JWT" not found
+in APPPATH/Filters/JWTAuthGuard.php on line 47.
+ 1 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 2 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-29 03:00:00 --> Class "App\Filters\Key" not found
+in APPPATH/Filters/JWTAuthGuard.php on line 48.
+ 1 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 2 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-29 04:52:56 --> Expired token
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 176.
+ 1 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 2 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 3 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()

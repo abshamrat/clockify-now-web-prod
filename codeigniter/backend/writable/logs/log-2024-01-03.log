@@ -1,0 +1,32 @@
+CRITICAL - 2024-01-03 04:34:00 --> Expired token
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 176.
+ 1 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 2 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 3 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-03 04:34:40 --> Expired token
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 176.
+ 1 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 2 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 3 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-03 04:36:00 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-03 04:37:47 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()

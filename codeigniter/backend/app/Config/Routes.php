@@ -17,10 +17,16 @@ $routes->get('/signin', 'SigninController::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 
 // API Routes
+function getEndpoint($endpoint) {
+    $prefix = '/api/v1';
+    return $prefix.$endpoint;
+}
 // auth
-$routes->post('/api/v1/authenticate', 'AuthController::authenticate');
+$routes->post(getEndpoint('/authenticate'), 'AuthController::authenticate');
 
 // users
-$routes->post('/api/v1/users/register', 'UsersController::register');
-$routes->get('/api/v1/users/profile', 'UsersController::userProfile', ['filter' => 'JWTAuthGuard']);
-$routes->get('/api/v1/settings/tracker-config', 'SettingsController::getTrackerConfig', ['filter' => 'JWTAuthGuard']);
+$routes->post(getEndpoint('/users/register'), 'UsersController::register');
+$routes->get(getEndpoint('/users/profile'), 'UsersController::userProfile', ['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/users/tracker-config'), 'UsersController::getUserTrackerConfig', ['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/settings/tracker-config'), 'SettingsController::getTrackerConfig', ['filter' => 'JWTAuthGuard']);
+$routes->post(getEndpoint('/trackers/track'), 'TrackersController::track', ['filter' => 'JWTAuthGuard']);

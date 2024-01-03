@@ -25,7 +25,30 @@ class UsersController extends BaseController
         $data = [
             'id'                    => 123,
             'user_full_name'        => 'Abu Bakar Siddique',
+            'designation'           => 'Engineering Manager',
             'profile_image_url'     => 'https://placehold.co/128x128?font=roboto',
+        ];
+        return $this->response->setJSON($data);
+    }
+
+    public function getUserTrackerConfig()
+    {
+        $data = [
+            'user_profile' => [
+                'id'                    => 123,
+                'user_full_name'        => 'Abu Bakar Siddique',
+                'designation'           => 'Engineering Manager',
+                'profile_image_url'     => 'https://placehold.co/128x128?font=roboto'
+            ],
+            'settings_link'         => 'https://placehold.co/128x128?font=roboto',
+            'tracker'               => [
+                'activity_types'    => [
+                    1 => 'Development',
+                    2 => 'Meeting',
+                    3 => 'Admin',
+                ]
+            ],
+            'app_version'           => "1.0"
         ];
         return $this->response->setJSON($data);
     }

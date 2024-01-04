@@ -21,7 +21,7 @@ class TrackersController extends BaseController
                     'uploaded[screenshot]',
                     'is_image[screenshot]',
                     'mime_in[screenshot,image/jpg,image/jpeg,image/gif,image/png,image/webp]',
-                    'max_size[screenshot,200]',
+                    'max_size[screenshot,5088]',
                     // 'max_dims[screenshot,1024,768]',
                 ],
             ],

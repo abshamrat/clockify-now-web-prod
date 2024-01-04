@@ -60,8 +60,8 @@ class UsersController extends BaseController
             'password' => ['rules' => 'required|min_length[8]|max_length[255]'],
             'confirm_password'  => [ 'label' => 'confirm password', 'rules' => 'matches[password]']
         ];
-            
-  
+
+
         if($this->validate($rules)){
             $model = new UserModel();
             $data = [

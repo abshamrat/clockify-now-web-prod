@@ -9,14 +9,13 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $data = [
-            'username' => 'darth',
-            'email'    => 'darth@theempire.com',
+            'role_name'    => 'Employee',
         ];
 
         // Simple Queries
-        $this->db->query('INSERT INTO users (username, email) VALUES(:username:, :email:)', $data);
+        // $this->db->query('INSERT INTO roles (username, email) VALUES(:username:, :email:)', $data);
 
         // Using Query Builder
-        $this->db->table('users')->insert($data);
+        $this->db->table('roles')->insert($data);
     }
 }

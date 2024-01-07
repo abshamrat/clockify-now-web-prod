@@ -46,6 +46,7 @@ class JWTAuthGuard implements FilterInterface
   
         try {
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
+            $request->auth_user = $decoded;
         } catch (\Exception $ex) {
             $response = service('response');
             $response->setBody('Access denied');

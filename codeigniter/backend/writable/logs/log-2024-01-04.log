@@ -1,0 +1,147 @@
+CRITICAL - 2024-01-04 11:27:39 --> Expired token
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 176.
+ 1 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 2 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 3 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-04 11:37:06 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(49): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-04 11:44:16 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(50): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-04 11:46:17 --> Too few arguments to function log_message(), 1 passed in /app/backend/app/Filters/JWTAuthGuard.php on line 49 and at least 2 expected
+in SYSTEMPATH/Common.php on line 799.
+ 1 APPPATH/Filters/JWTAuthGuard.php(49): log_message()
+ 2 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 3 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:47:02 --> Decoding
+CRITICAL - 2024-01-04 11:47:02 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(52): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:47:11 --> Decoding
+CRITICAL - 2024-01-04 11:47:11 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(52): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:48:18 --> Decoding
+INFO - 2024-01-04 11:48:18 --> Decoded
+INFO - 2024-01-04 11:48:36 --> Decoding
+CRITICAL - 2024-01-04 11:48:36 --> Malformed UTF-8 characters
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(120): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(52): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:48:55 --> Decoding
+INFO - 2024-01-04 11:48:55 --> Decoded
+INFO - 2024-01-04 11:53:57 --> Decoding
+INFO - 2024-01-04 11:53:57 --> Decoded
+INFO - 2024-01-04 11:54:06 --> Decoding
+CRITICAL - 2024-01-04 11:54:06 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(52): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:56:25 --> Decoding
+CRITICAL - 2024-01-04 11:56:25 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(53): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:56:38 --> Decoding
+CRITICAL - 2024-01-04 11:56:38 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(53): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:56:39 --> Decoding
+CRITICAL - 2024-01-04 11:56:39 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(53): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:56:54 --> Decoding
+CRITICAL - 2024-01-04 11:56:54 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(51): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:56:58 --> Decoding
+INFO - 2024-01-04 11:57:11 --> Decoding
+CRITICAL - 2024-01-04 11:57:11 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(52): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:58:07 --> Decoding
+CRITICAL - 2024-01-04 11:58:07 --> Firebase\JWT\JWT::decode(): Argument #3 ($headers) cannot be passed by reference
+in APPPATH/Filters/JWTAuthGuard.php on line 51.
+ 1 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 2 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:58:19 --> Decoding
+CRITICAL - 2024-01-04 11:58:19 --> Syntax error, malformed JSON
+in VENDORPATH/firebase/php-jwt/src/JWT.php on line 524.
+ 1 VENDORPATH/firebase/php-jwt/src/JWT.php(369): Firebase\JWT\JWT::handleJsonError()
+ 2 VENDORPATH/firebase/php-jwt/src/JWT.php(113): Firebase\JWT\JWT::jsonDecode()
+ 3 APPPATH/Filters/JWTAuthGuard.php(52): Firebase\JWT\JWT::decode()
+ 4 SYSTEMPATH/Filters/Filters.php(182): App\Filters\JWTAuthGuard->before()
+ 5 SYSTEMPATH/CodeIgniter.php(466): CodeIgniter\Filters\Filters->run()
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+INFO - 2024-01-04 11:59:51 --> Decoding

@@ -53,6 +53,10 @@ class CreateUserProfilesTable extends Migration
                 'constraint'     => 5,
                 'unsigned' => true,
             ],
+            'address' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
             'profile_image_link' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',

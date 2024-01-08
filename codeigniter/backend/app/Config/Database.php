@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => 'mariadb',
         'username'     => 'bn_myapp',
         'password'     => '',
-        'database'     => 'bitnami_myapp',
+        'database'     => 'clockify_now',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

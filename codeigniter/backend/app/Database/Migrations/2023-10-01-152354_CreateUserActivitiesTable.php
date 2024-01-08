@@ -5,7 +5,7 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class CreateEmployeeActivitiesTable extends Migration
+class CreateUserActivitiesTable extends Migration
 {
     public function up()
     {
@@ -17,15 +17,28 @@ class CreateEmployeeActivitiesTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'mouse_activities' => [
+            'user_id' => [
                 'type' => 'INT',
                 'constraint'     => 5,
                 'unsigned' => true,
+            ],
+            'mouse_click' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+                'default' => 0,
+            ],
+            'mouse_scroll' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+                'default' => 0,
             ],
             'keyboard_activities' => [
                 'type' => 'INT',
                 'constraint'     => 5,
                 'unsigned' => true,
+                'default' => 0,
             ],
             'activity_per_slot' => [ // count of active minutes per slot, like 8 active minutes in 10 mins
                 'type' => 'INT',
@@ -37,28 +50,37 @@ class CreateEmployeeActivitiesTable extends Migration
                 'constraint'     => 5,
                 'unsigned' => true,
             ],
-            'screenshot_path' => [
+            'activity_id' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+                'default' => 0,
+            ],
+            'memo' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
+            ],
+            'screenshot_link' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'timestamp' => [
+                'type'    => 'TIMESTAMP',
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
             ],
             'created_at' => [
                 'type'    => 'TIMESTAMP',
                 'default' => new RawSql('CURRENT_TIMESTAMP'),
             ],
-            'employee_id' => [
-                'type' => 'INT',
-                'constraint'     => 5,
-                'unsigned' => true,
-            ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('employee_id', 'employees', 'id');
-        $this->forge->createTable('employee_activities');
+        $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->createTable('user_activities');
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('employee_activities');
+        $this->forge->dropTable('user_activities');
     }
 }

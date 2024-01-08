@@ -16,7 +16,11 @@ class CreateEmployeesTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'name' => [
+            'first_name' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'last_name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],

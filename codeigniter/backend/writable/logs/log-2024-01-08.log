@@ -1,0 +1,254 @@
+ERROR - 2024-01-08 07:17:02 --> mysqli_sql_exception: Table 'roles' already exists in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/Forge.php(546): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Database/Migrations/2023-10-01-150657_CreateRolesTable.php(25): CodeIgniter\Database\Forge->createTable()
+#5 /app/backend/system/Database/MigrationRunner.php(877): App\Database\Migrations\CreateRolesTable->up()
+#6 /app/backend/system/Database/MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate()
+#7 /app/backend/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest()
+#8 /app/backend/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run()
+#9 /app/backend/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/backend/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+ERROR - 2024-01-08 07:21:23 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'bn_myapp'@'%' to database 'bitnami_myapp' in /app/backend/system/Database/MySQLi/Connection.php:185
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(185): mysqli->real_connect()
+#1 /app/backend/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /app/backend/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /app/backend/system/Database/BaseConnection.php(1409): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/system/Database/BaseConnection.php(1428): CodeIgniter\Database\BaseConnection->listTables()
+#5 /app/backend/system/Database/MigrationRunner.php(768): CodeIgniter\Database\BaseConnection->tableExists()
+#6 /app/backend/system/Database/MigrationRunner.php(168): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 /app/backend/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest()
+#8 /app/backend/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run()
+#9 /app/backend/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#10 /app/backend/spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'%' to database 'bitnami_myapp' in /app/backend/system/Database/MySQLi/Connection.php:229
+Stack trace:
+#0 /app/backend/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /app/backend/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /app/backend/system/Database/BaseConnection.php(1409): CodeIgniter\Database\BaseConnection->query()
+#3 /app/backend/system/Database/BaseConnection.php(1428): CodeIgniter\Database\BaseConnection->listTables()
+#4 /app/backend/system/Database/MigrationRunner.php(768): CodeIgniter\Database\BaseConnection->tableExists()
+#5 /app/backend/system/Database/MigrationRunner.php(168): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 /app/backend/system/Commands/Database/Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest()
+#7 /app/backend/system/CLI/Commands.php(65): CodeIgniter\Commands\Database\Migrate->run()
+#8 /app/backend/system/CLI/Console.php(37): CodeIgniter\CLI\Commands->run()
+#9 /app/backend/spark(102): CodeIgniter\CLI\Console->run()
+#10 {main}
+CRITICAL - 2024-01-08 07:23:20 --> Too few arguments to function App\Controllers\TrackersController::__construct(), 0 passed in /app/backend/system/CodeIgniter.php on line 891 and exactly 1 expected
+in APPPATH/Controllers/TrackersController.php on line 18.
+ 1 SYSTEMPATH/CodeIgniter.php(891): App\Controllers\TrackersController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(485): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-01-08 07:24:24 --> Too few arguments to function App\Controllers\TrackersController::__construct(), 0 passed in /app/backend/system/CodeIgniter.php on line 891 and exactly 1 expected
+in APPPATH/Controllers/TrackersController.php on line 18.
+ 1 SYSTEMPATH/CodeIgniter.php(891): App\Controllers\TrackersController->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(485): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:24:55 --> mysqli_sql_exception: Unknown column 'keyboard_activity' in 'field list' in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:24:55 --> Unknown column 'keyboard_activity' in 'field list'
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:25:22 --> mysqli_sql_exception: Column 'mouse_click' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:25:22 --> Column 'mouse_click' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:26:19 --> mysqli_sql_exception: Column 'mouse_click' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:26:19 --> Column 'mouse_click' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:27:19 --> mysqli_sql_exception: Column 'mouse_click' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:27:19 --> Column 'mouse_click' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:28:01 --> mysqli_sql_exception: Column 'mouse_click' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:28:01 --> Column 'mouse_click' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:31:39 --> mysqli_sql_exception: Column 'activity_per_slot' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:31:39 --> Column 'activity_per_slot' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:31:58 --> mysqli_sql_exception: Column 'activity_id' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:31:58 --> Column 'activity_id' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:32:10 --> mysqli_sql_exception: Column 'memo' cannot be null in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:32:10 --> Column 'memo' cannot be null
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:32:19 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`clockify_now`.`user_activities`, CONSTRAINT `user_activities_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)) in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:32:19 --> Cannot add or update a child row: a foreign key constraint fails (`clockify_now`.`user_activities`, CONSTRAINT `user_activities_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-01-08 07:34:03 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`clockify_now`.`user_activities`, CONSTRAINT `user_activities_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)) in /app/backend/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /app/backend/system/Database/MySQLi/Connection.php(306): mysqli->query()
+#1 /app/backend/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /app/backend/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /app/backend/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+#4 /app/backend/app/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+#5 /app/backend/system/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+#6 /app/backend/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+#7 /app/backend/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+#8 /app/backend/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-01-08 07:34:03 --> Cannot add or update a child row: a foreign key constraint fails (`clockify_now`.`user_activities`, CONSTRAINT `user_activities_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Controllers/TrackersController.php(96): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\TrackersController->track()
+ 4 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()

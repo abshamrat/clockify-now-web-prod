@@ -37,7 +37,6 @@ class UsersController extends BaseController
 
     public function getUserTrackerConfig()
     {
-        
         $user_profile = $this->db->query("
             SELECT
                 up.user_id as id 

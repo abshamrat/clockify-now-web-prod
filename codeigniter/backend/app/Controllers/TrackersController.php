@@ -15,9 +15,9 @@ class TrackersController extends BaseController
 
     protected $helpers = ['form'];
 
-    // function __construct($name) {
-        
-    // }
+    function __construct() {
+        $this->db = db_connect();   
+    }
 
     public function track()
     {
@@ -39,8 +39,31 @@ class TrackersController extends BaseController
             return $this->response->setJSON($data);
         }
 
+        $tracked_data = [
+            'user_id' => $this->request->auth_user->id,
+            'mouse_click' => $this->request->getVar('mouse_click') ?: 0,
+            'mouse_scroll' => $this->request->getVar('mouse_scroll') ?: 0,
+            'keyboard_activities' => $this->request->getVar('keyboard_activity') ?: 0,
+            'activity_per_slot' => $this->request->getVar('active_min') ?: 0,
+            'activity_slot' => $this->request->getVar('active_min') ?: 0,
+            'activity_id' => $this->request->getVar('activity_id') ?: 0,
+            'timestamp' => $this->request->getVar('timestamp'),
+            'memo' => $this->request->getVar('memo') ?: '',
+        ];
+
         $img = $this->request->getFile('screenshot');
+        // $mouse_click = $this->request->getVar('mouse_click');
+        // $mouse_scroll = $this->request->getVar('mouse_scroll');
+        // $keyboard_activity = $this->request->getVar('keyboard_activity');
+        // $activity_per_slot = $this->request->getVar('active_min');
+        // $activity_slot = $this->request->getVar('out_of_min');
+        // $activity_id = $this->request->getVar('activity_id');
+        // $timestamp = $this->request->getVar('timestamp');
+        // $memo = $this->request->getVar('memo');
+
         $file_name = "none.png";
+
+
 
         if (! $img->hasMoved()) {
             $filepath = WRITEPATH . 'uploads/' . $img->store();
@@ -67,8 +90,10 @@ class TrackersController extends BaseController
                 ]);
                 $data = [
                     'uploaded_fileinfo' => $filepath,
-                    "statusCode" => $result["@metadata"]["statusCode"]
+                    "effectiveUri" => $result["@metadata"]["effectiveUri"]
                 ];
+                $tracked_data["screenshot_link"] = $result["@metadata"]["effectiveUri"];
+                $this->db->table('user_activities')->insert($tracked_data);
             } catch (\Exception $ex) {
                 $data = [
                     'uploaded_fileinfo' => $filepath,

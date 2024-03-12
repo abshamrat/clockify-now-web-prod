@@ -32,7 +32,6 @@ class DesignationSeeder extends Seeder
         ];
 
         foreach($data as $d) {
-            // $this->db->query('INSERT INTO designations (code, `name`) VALUES('.$d["code"].', )', );
             $this->db->table('designations')->insert($d);
 
         }

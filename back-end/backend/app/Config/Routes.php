@@ -30,4 +30,6 @@ $routes->get(getEndpoint('/users/profile'), 'UsersController::userProfile', ['fi
 $routes->get(getEndpoint('/users/tracker-config'), 'UsersController::getUserTrackerConfig', ['filter' => 'JWTAuthGuard']);
 $routes->get(getEndpoint('/settings/tracker-config'), 'SettingsController::getTrackerConfig', ['filter' => 'JWTAuthGuard']);
 $routes->post(getEndpoint('/trackers/track'), 'TrackersController::track', ['filter' => 'JWTAuthGuard']);
-$routes->get(getEndpoint('/users/(:any)/widget/todays-work-summary'), 'UserDashboardWidgetController::todaysWorkSummary/$1',['filter' => 'JWTAuthGuard']);
+// $routes->get(getEndpoint('/users/(:any)/widget/todays-work-summary'), 'UserDashboardWidgetController::todaysWorkSummary/$1',['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/users/widget/summary'), 'UserDashboardWidgetController::summary', ['filter' => 'JWTAuthGuard']);
+

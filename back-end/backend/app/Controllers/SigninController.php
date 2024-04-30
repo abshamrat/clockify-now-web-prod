@@ -62,15 +62,12 @@ class SigninController extends Controller
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($ses_data);
-                echo "authenticated";
                 return redirect()->to('/profile');
             } else {
-                echo "Password is incorrect.";
                 $session->setFlashdata('msg', 'Password is incorrect.');
                 return redirect()->to('/signin');
             }
         }else{
-            echo "Email does not exist.";
             $session->setFlashdata('msg', 'Email does not exist.');
             return redirect()->to('/signin');
         }

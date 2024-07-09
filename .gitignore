@@ -1,6 +1,6 @@
-app/backend/writable/debugbar
-app/backend/writable/logs
-app/backend/writable/uploads
-app/backend/vendor
-app/vendor
-backup
+project/backend/writable/debugbar
+project/backend/writable/logs
+project/backend/writable/uploads
+project/backend/vendor
+project/vendor
+dumpdb

@@ -1,19 +1,38 @@
 # Copyright VMware, Inc.
 # SPDX-License-Identifier: APACHE-2.0
 
-version: '2'
+version: '3.3'
 
 services:
+  # mariadb:
+  #   image: docker.io/bitnami/mariadb:11.0
+  #   environment:
+  #     # ALLOW_EMPTY_PASSWORD is recommended only for development.
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #     - MARIADB_USER=bn_myapp
+  #     - MARIADB_DATABASE=clockify_now
+  #   ports:
+  #     - '3306:3306'
   mariadb:
-    image: docker.io/bitnami/mariadb:11.0
+    image: mysql:5.7
+    restart: always
     environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_USER=bn_myapp
-      - MARIADB_DATABASE=clockify_now
+      MYSQL_DATABASE: 'clockify_now'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'bn_myapp'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: '12345678'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: '12345678'
     ports:
+      # <Port exposed> : <MySQL Port running inside container>
       - '3306:3306'
-
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
   backend:
     image: docker.io/bitnami/codeigniter:4
     ports:
@@ -24,9 +43,14 @@ services:
       - CODEIGNITER_DATABASE_HOST=mariadb
       - CODEIGNITER_DATABASE_PORT_NUMBER=3306
       - CODEIGNITER_DATABASE_USER=bn_myapp
+      - CODEIGNITER_DATABASE_PASSWORD=12345678
       - CODEIGNITER_DATABASE_NAME=clockify_now
       - CODEIGNITER_PROJECT_NAME=backend
     volumes:
       - './:/app'
     depends_on:
       - mariadb
+
+# Names our volume
+volumes:
+  my-db:

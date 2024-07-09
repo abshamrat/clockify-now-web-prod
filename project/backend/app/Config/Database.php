@@ -26,9 +26,13 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
+        // 'hostname'     => 'localhost',
+        // 'username'     => 'fatfxqmz_cpses_fafzk1v51b',
+        // 'password'     => 'Hws-rAKSdqHv',
+        // 'database'     => 'fatfxqmz_clockifynow',
         'hostname'     => 'mariadb',
         'username'     => 'bn_myapp',
-        'password'     => '',
+        'password'     => '12345678',
         'database'     => 'clockify_now',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',

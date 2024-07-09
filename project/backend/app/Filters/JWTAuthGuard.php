@@ -25,7 +25,7 @@ class JWTAuthGuard implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        $key = getenv('JWT_SECRET');
+        $key = getenv('JWT_SECRET', 'clock1234');
         $header = $request->getHeader("Authorization");
         $token = null;
   

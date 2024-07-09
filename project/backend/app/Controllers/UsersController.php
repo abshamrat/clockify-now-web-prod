@@ -49,6 +49,22 @@ class UsersController extends BaseController
                 $this->request->auth_user->id
             ])->getRow();
 
+        $user_this_week_worked = $this->db->query("
+            SELECT IFNULL(SUM(activity_slot),0) as total_mins_this_week 
+            FROM user_activities 
+            WHERE week(created_at)=week(now()) AND
+            user_id = ?;", [
+                $this->request->auth_user->id
+            ])->getRow();
+
+        $user_today_worked = $this->db->query("
+            SELECT IFNULL(SUM(activity_slot),0) as total_mins_today 
+            FROM user_activities 
+            WHERE DATE(`created_at`) = CURDATE() AND
+            user_id = ?;", [
+                $this->request->auth_user->id
+            ])->getRow();
+
         $data = [
             'user_profile' => $user_profile,
             'settings_link'         => 'https://placehold.co/128x128?font=roboto',
@@ -58,9 +74,13 @@ class UsersController extends BaseController
                     2 => 'Meeting',
                     3 => 'R&D',
                     4 => 'Admin',
+                ],
+                "worked" => [
+                    "today" => $user_today_worked->total_mins_today,
+                    "this_week" => $user_this_week_worked->total_mins_this_week,
                 ]
             ],
-            'app_version'           => "1.0"
+            'app_version'           => "1.0",
         ];
 
         return $this->response->setJSON($data);

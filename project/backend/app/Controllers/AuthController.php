@@ -29,7 +29,7 @@ class AuthController extends BaseController
             return $this->respond(['error' => 'Invalid username or password.'], 401);
         }
 
-        $key = getenv('JWT_SECRET');
+        $key = getenv('JWT_SECRET', 'clock1234');
         $iat = time(); // current timestamp value
         $exp = $iat + 7* 24 * 3600;
  

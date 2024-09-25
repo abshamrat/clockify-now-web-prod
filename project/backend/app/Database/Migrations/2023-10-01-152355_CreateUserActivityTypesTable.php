@@ -5,7 +5,7 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class CreateUsersTable extends Migration
+class CreateUserActivityTypesTable extends Migration
 {
     public function up()
     {
@@ -22,38 +22,27 @@ class CreateUsersTable extends Migration
                 'constraint'     => 5,
                 'unsigned' => true,
             ],
-            'email' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'password' => [
+            'name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
-            ],
-            'is_active' => [
-                'type'       => 'TINYINT',
-                'constraint' => 1,
-                'default' => 0, 
-            ],
-            'role_id' => [
-                'type' => 'INT',
-                'constraint'     => 5,
-                'unsigned' => true,
             ],
             'created_at' => [
                 'type'    => 'TIMESTAMP',
                 'default' => new RawSql('CURRENT_TIMESTAMP'),
             ],
+            'updated_at' => [
+                'type'    => 'TIMESTAMP',
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
+            ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('role_id', 'roles', 'id');
         $this->forge->addForeignKey('organization_id', 'organizations', 'id');
-        $this->forge->createTable('users');
+        $this->forge->createTable('activity_types');
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('users');
+        $this->forge->dropTable('activity_types');
     }
 }

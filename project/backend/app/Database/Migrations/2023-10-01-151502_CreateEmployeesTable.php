@@ -16,6 +16,11 @@ class CreateEmployeesTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'organization_id' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+            ],
             'first_name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
@@ -54,6 +59,8 @@ class CreateEmployeesTable extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('employee_title_id', 'employee_titles', 'id');
+        $this->forge->addForeignKey('organization_id', 'organizations', 'id');
+
         $this->forge->createTable('employees');
         $this->db->enableForeignKeyChecks();
     }

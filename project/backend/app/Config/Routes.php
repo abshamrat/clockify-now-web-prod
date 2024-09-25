@@ -32,4 +32,10 @@ $routes->get(getEndpoint('/settings/tracker-config'), 'SettingsController::getTr
 $routes->post(getEndpoint('/trackers/track'), 'TrackersController::track', ['filter' => 'JWTAuthGuard']);
 // $routes->get(getEndpoint('/users/(:any)/widget/todays-work-summary'), 'UserDashboardWidgetController::todaysWorkSummary/$1',['filter' => 'JWTAuthGuard']);
 $routes->get(getEndpoint('/users/widget/summary'), 'UserDashboardWidgetController::summary', ['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/users/widget/user-last-activities'), 'UserDashboardWidgetController::userLastActivityLogs', ['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/users/activities'), 'UserDashboardWidgetController::userActivityByDate', ['filter' => 'JWTAuthGuard']);
+// leave
+$routes->post(getEndpoint('/leave'), 'LeaveController::addLeaveRequest', ['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/leave'), 'LeaveController::getLeaveRequest', ['filter' => 'JWTAuthGuard']);
+$routes->get(getEndpoint('/leave/org/settings'), 'LeaveController::getOrgLeaveSettings', ['filter' => 'JWTAuthGuard']);
 

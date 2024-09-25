@@ -19,6 +19,7 @@ class UserDashboardWidgetController extends BaseController
         $todays_work_summary = $this->request->getVar('today') == '1';
         $weekly_work_summary = $this->request->getVar('weekly') == '1';
         $leave_summary = $this->request->getVar('leave') == '1';
+        $timesheet = $this->request->getVar('timesheet') == '1';
 
         $data = array();
 
@@ -27,11 +28,18 @@ class UserDashboardWidgetController extends BaseController
         }
 
         if($weekly_work_summary) {
-            $data['weekly_work_summary'] = $this->weeklyWorkSummary($user_id);
+            $weekday_from = $this->request->getVar('weekday_from');
+            $weekday_to = $this->request->getVar('weekday_to');
+
+            $data['weekly_work_summary'] = $this->weeklyWorkSummary($user_id, $weekday_from, $weekday_to);
         }
 
         if($leave_summary) {
             $data['leave_summary'] = $this->leaveSummary($user_id);
+        }
+
+        if($timesheet) {
+            $data['timesheet_summary'] = $this->timesheetWorkHoursSummary($user_id);
         }
 
         $response = array(
@@ -42,7 +50,7 @@ class UserDashboardWidgetController extends BaseController
         return $this->respond($response);
     }
 
-    public function todaysWorkSummary($user_id)
+    private function todaysWorkSummary($user_id)
     {
         $sql_todays_work = "SELECT 
                     created_at as start_time
@@ -77,29 +85,29 @@ class UserDashboardWidgetController extends BaseController
         return $data;
     }
 
-    public function weeklyWorkSummary($user_id)
+    private function weeklyWorkSummary($user_id, $weekday_from, $weekday_to)
     {
         $sql_weekly_work = "SELECT date(created_at) day_date, SUM(ua.activity_slot) total_activity  FROM user_activities ua 
-                WHERE created_at >= CURRENT_DATE - 7
+                WHERE created_at >= ? AND created_at <= ?
                 AND user_id = ?
                 GROUP BY date(created_at)";
 
-        $result_weekly = $this->db->query($sql_weekly_work, array($user_id));
+        $result_weekly = $this->db->query($sql_weekly_work, array($weekday_from,$weekday_to, $user_id));
 
         return $result_weekly->getResult('array');
     }
 
-    public function leaveSummary($user_id)
+    private function leaveSummary($user_id)
     {
         $sql_leave_summary = "SELECT 
                                 MAX(created_at) as last_leave_taken_at
-                                , (SELECT COUNT(id) FROM employee_leaves el2 WHERE el2.user_id = 2 and el2.leave_type = 'absent') as total_absent
-                                , (SELECT COUNT(id) FROM employee_leaves el2 WHERE el2.user_id = 2 and el2.leave_type <> 'absent' AND el2.status = 'pending') as total_pending
-                            FROM employee_leaves el 
-                            WHERE el.user_id = 2
+                                , (SELECT COUNT(id) FROM user_leaves el2 WHERE el2.user_id = ? and el2.leave_type = 'absent') as total_absent
+                                , (SELECT COUNT(id) FROM user_leaves el2 WHERE el2.user_id = ? and el2.leave_type <> 'absent' AND el2.status = 'pending') as total_pending
+                            FROM user_leaves el 
+                            WHERE el.user_id = ?
                             LIMIT 1";
 
-        $result = $this->db->query($sql_leave_summary, array($user_id));
+        $result = $this->db->query($sql_leave_summary, array($user_id, $user_id, $user_id));
         $result = $result->getResult('array');
 
         if (count($result) > 0) {
@@ -109,12 +117,81 @@ class UserDashboardWidgetController extends BaseController
         return $result;
     }
 
-    public function userLastActivityLogs($user_id)
+    private function timesheetWorkHoursSummary($user_id)
     {
-        $sql_activity_logs = "SELECT activity_id, memo, min(created_at) start_time, max(created_at) end_time, SUM(activity_slot) total_hour_worked  FROM user_activities ua
-                            WHERE ua.user_id = ?
-                            GROUP BY activity_id, memo
-                            LIMIT 10";
+        // $data = array(
+        //     'today' => '2/8',
+        //     'this_week' => '35/40',
+        //     'last_week' => '35/40',
+        //     'this_month' => '80/160',
+        // );
+
+        $sql = "SELECT 
+            SUM(CASE WHEN DATE(created_at) = CURDATE() THEN activity_slot ELSE 0 END) AS today,
+            SUM(CASE WHEN YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1) THEN activity_slot ELSE 0 END) AS this_week,
+            SUM(CASE WHEN YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1) - 1 THEN activity_slot ELSE 0 END) AS last_week,
+            SUM(CASE WHEN created_at >= NOW() - INTERVAL 1 MONTH THEN activity_slot ELSE 0 END) AS this_month
+        FROM 
+            user_activities
+            WHERE user_id = ? AND created_at >= NOW() - INTERVAL 1 MONTH;";
+
+        $result = $this->db->query($sql, array($user_id));
+
+        $data = array(
+            'success' => true,
+            'data' => $result->getResult('array'),
+        );
+        return $data;
+    }
+
+    public function userActivityByDate()
+    {
+        $user_id = $this->request->auth_user->id;
+        $date = $this->request->getVar('date');
+
+        if (!$date) {
+            $date = "CURRENT_DATE";
+        }
+
+        $sql_activity_logs = "SELECT 
+                at2.name as activity_name
+                , ua.memo
+                , ua.created_at
+                , ua.activity_slot
+                , ua.activity_per_slot 
+                , ua.mouse_click
+                , ua.mouse_scroll 
+                , ua.keyboard_activities 
+            FROM user_activities ua
+            INNER JOIN activity_types at2 ON at2.id  = ua.activity_id             
+            WHERE ua.user_id = ?
+            AND DATE(ua.created_at) = ?
+            ORDER BY ua.id ASC;
+        ";
+
+        $result = $this->db->query($sql_activity_logs, array($user_id, $date));
+
+        $data = array(
+            'success' => true,
+            'data' => $result->getResult('array'),
+        );
+
+        return $this->respond($data);
+    }
+
+    public function userLastActivityLogs()
+    {
+        $user_id = $this->request->auth_user->id;
+        $sql_activity_logs = "SELECT 
+                at2.name as activity_name
+                , ua.memo
+                , ua.created_at
+                , ua.activity_slot
+            FROM user_activities ua
+            INNER JOIN activity_types at2 ON at2.id  = ua.activity_id             
+            WHERE ua.user_id = ?
+            AND ua.created_at >= CURRENT_DATE; -- change the date to last 24 hrs
+        ";
 
         $result = $this->db->query($sql_activity_logs, array($user_id));
 

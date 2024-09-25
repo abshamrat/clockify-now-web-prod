@@ -10,6 +10,10 @@ class AuthController extends BaseController
 {
     use ResponseTrait;
 
+    function __construct() {
+        $this->db = db_connect();   
+    }
+
     public function authenticate()
     {
         $userModel = new UserModel();
@@ -41,13 +45,21 @@ class AuthController extends BaseController
             "exp" => $exp, // Expiration time of token
             "email" => $user['email'],
             "id" => $user['id'],
+            "organization_id" => $user['organization_id'],
         );
 
         $token = JWT::encode($payload, $key, 'HS256');
- 
+
+        $sql = "SELECT up.*, d.name as designation_name FROM user_profiles up 
+        INNER JOIN designations d ON d.id = up.designation_id 
+        WHERE up.user_id = ? LIMIT 1";
+
+        $user_profile = $this->db->query($sql, array($user['id']));
+
         $response = [
             'message' => 'Login successful!',
-            'token' => $token
+            'token' => $token,
+            'profile' => $user_profile->getResult('array')[0]
         ];
 
         return $this->respond($response, 200);

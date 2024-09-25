@@ -22,6 +22,16 @@ class CreateUserActivitiesTable extends Migration
                 'constraint'     => 5,
                 'unsigned' => true,
             ],
+            'organization_id' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+            ],
+            'manual_time_id' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+            ],
             'mouse_click' => [
                 'type' => 'INT',
                 'constraint'     => 5,
@@ -75,6 +85,9 @@ class CreateUserActivitiesTable extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->addForeignKey('activity_id', 'activity_types', 'id');
+        $this->forge->addForeignKey('manual_time_id', 'user_manual_times', 'id');
+        $this->forge->addForeignKey('organization_id', 'organizations', 'id');
         $this->forge->createTable('user_activities');
         $this->db->enableForeignKeyChecks();
     }

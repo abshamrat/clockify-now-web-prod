@@ -22,10 +22,19 @@ class CreateEmployeeLeavesTable extends Migration
                 'constraint'     => 5,
                 'unsigned' => true,
             ],
+            'organization_id' => [
+                'type' => 'INT',
+                'constraint'     => 5,
+                'unsigned' => true,
+            ],
             'leave_type' => [
                 'type'      => 'ENUM("absent","casual_leave","sick_leave")',
                 'default'   => 'absent',
                 'null'      => false,
+            ],
+            'reason' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
             'status' => [
                 'type'      => 'ENUM("pending","rejected", "approved")',
@@ -57,12 +66,13 @@ class CreateEmployeeLeavesTable extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id');
-        $this->forge->createTable('employee_leaves');
+        $this->forge->addForeignKey('organization_id', 'organizations', 'id');
+        $this->forge->createTable('user_leaves');
         $this->db->enableForeignKeyChecks();
     }
 
     public function down()
     {
-        $this->forge->dropTable('employee_leaves');
+        $this->forge->dropTable('user_leaves');
     }
 }

@@ -32,6 +32,16 @@ class CreateOrganizationLeaveSettingsTable extends Migration
                 'constraint'    => 5,
                 'unsigned'      => true,
             ],
+            'weekend' => [
+                'type' => 'SET',
+                'constraint' => ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+                'null' => TRUE
+            ],
+            'public_holidays' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => TRUE
+            ],
             'created_at' => [
                 'type'    => 'TIMESTAMP',
                 'default' => new RawSql('CURRENT_TIMESTAMP'),

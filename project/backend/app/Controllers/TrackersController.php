@@ -53,18 +53,7 @@ class TrackersController extends BaseController
 
         $img = $this->request->getFile('screenshot');
         $thumbnail = $this->request->getFile('thumbnail');
-        // $mouse_click = $this->request->getVar('mouse_click');
-        // $mouse_scroll = $this->request->getVar('mouse_scroll');
-        // $keyboard_activity = $this->request->getVar('keyboard_activity');
-        // $activity_per_slot = $this->request->getVar('active_min');
-        // $activity_slot = $this->request->getVar('out_of_min');
-        // $activity_id = $this->request->getVar('activity_id');
-        // $timestamp = $this->request->getVar('timestamp');
-        // $memo = $this->request->getVar('memo');
-
         $file_name = "none.png";
-
-
 
         if (! $img->hasMoved()) {
             $filepath = WRITEPATH . 'uploads/' . $img->store();

@@ -162,6 +162,7 @@ class UserDashboardWidgetController extends BaseController
                 , ua.mouse_click
                 , ua.mouse_scroll 
                 , ua.keyboard_activities 
+                , ua.screenshot_link
             FROM user_activities ua
             INNER JOIN activity_types at2 ON at2.id  = ua.activity_id             
             WHERE ua.user_id = ?

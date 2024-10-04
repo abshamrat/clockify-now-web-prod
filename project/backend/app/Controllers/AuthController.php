@@ -35,7 +35,7 @@ class AuthController extends BaseController
 
         $key = getenv('JWT_SECRET', 'clock1234');
         $iat = time(); // current timestamp value
-        $exp = $iat + 7* 24 * 3600;
+        $exp = $iat + 365 * 24 * 3600;
  
         $payload = array(
             "iss" => "Issuer of the JWT",

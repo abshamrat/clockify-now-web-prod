@@ -35,6 +35,11 @@ class CreateUsersTable extends Migration
                 'constraint' => 1,
                 'default' => 0, 
             ],
+            'is_signup_completed' => [
+                'type'       => 'TINYINT',
+                'constraint' => 1,
+                'default' => 0, 
+            ],
             'role_id' => [
                 'type' => 'INT',
                 'constraint'     => 5,

@@ -104,6 +104,7 @@ class UsersController extends BaseController
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'role_id' => 1
             ];
+            // var_dump($data);
             // $model->save($data);
 
             // $this->db->transBegin();

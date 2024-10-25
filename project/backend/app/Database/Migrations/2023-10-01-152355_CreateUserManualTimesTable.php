@@ -48,7 +48,7 @@ class CreateUserManualTimesTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'attachment_link' => [
+            'attachment_links' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],

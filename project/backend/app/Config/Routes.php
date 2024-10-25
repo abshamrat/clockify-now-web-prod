@@ -34,6 +34,10 @@ $routes->post(getEndpoint('/trackers/track'), 'TrackersController::track', ['fil
 $routes->get(getEndpoint('/users/widget/summary'), 'UserDashboardWidgetController::summary', ['filter' => 'JWTAuthGuard']);
 $routes->get(getEndpoint('/users/widget/user-last-activities'), 'UserDashboardWidgetController::userLastActivityLogs', ['filter' => 'JWTAuthGuard']);
 $routes->get(getEndpoint('/users/activities'), 'UserDashboardWidgetController::userActivityByDate', ['filter' => 'JWTAuthGuard']);
+// timesheet
+$routes->get(getEndpoint('/timesheet/activity-types'), 'TimesheetController::getActivityTypes', ['filter' => 'JWTAuthGuard']);
+$routes->post(getEndpoint('/timesheet/add-manual-time'), 'TimesheetController::addManualTime', ['filter' => 'JWTAuthGuard']);
+
 // leave
 $routes->post(getEndpoint('/leave'), 'LeaveController::addLeaveRequest', ['filter' => 'JWTAuthGuard']);
 $routes->get(getEndpoint('/leave'), 'LeaveController::getLeaveRequest', ['filter' => 'JWTAuthGuard']);

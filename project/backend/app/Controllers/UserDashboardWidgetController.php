@@ -54,31 +54,35 @@ class UserDashboardWidgetController extends BaseController
     {
         $sql_todays_work = "SELECT 
                     created_at as start_time
-                    , (SELECT MAX(created_at) FROM user_activities ua2 WHERE ua2.user_id = ? AND created_at >= CURRENT_DATE) as end_time
-                    , (SELECT SUM(ua2.activity_slot) FROM user_activities ua2 WHERE ua2.user_id = ? AND created_at >= CURRENT_DATE) as work_hour
+                    , (SELECT MAX(created_at) FROM user_activities ua1 WHERE ua1.user_id = ? AND ua1.created_at >= CURRENT_DATE) as end_time
+                    , (SELECT SUM(ua2.activity_slot) FROM user_activities ua2 WHERE ua2.user_id = ? AND ua2.created_at >= CURRENT_DATE) as total_tracked_minutes
+                    , (SELECT SUM(ua3.activity_per_slot) FROM user_activities ua3 WHERE ua3.user_id = ? AND ua3.created_at >= CURRENT_DATE) as total_activity_minutes
                 FROM user_activities ua WHERE 
                     created_at >= CURRENT_DATE
                 AND ua.user_id = ?
                 LIMIT 1";
 
-        $result_todays_work = $this->db->query($sql_todays_work, array($user_id, $user_id, $user_id));
+        $result_todays_work = $this->db->query($sql_todays_work, array($user_id, $user_id, $user_id, $user_id));
 
         $result_todays_work = $result_todays_work->getResult('array');
         $start_time = null;
         $end_time = null;
-        $work_hour = null;
+        $total_tracked_minutes = null;
+        $total_activity_minutes = null;
         $per_day_work_limit = 8;
 
         if (count($result_todays_work) > 0) {
             $start_time = $result_todays_work[0]['start_time'];
             $end_time = $result_todays_work[0]['end_time'];
-            $work_hour = $result_todays_work[0]['work_hour'];
+            $total_tracked_minutes = $result_todays_work[0]['total_tracked_minutes'];
+            $total_activity_minutes = $result_todays_work[0]['total_activity_minutes'];
         }
 
         $data = array(
             'start_time' => $start_time,
             'end_time' => $end_time,
-            'work_hour' => $work_hour,
+            'total_tracked_minutes' => $total_tracked_minutes,
+            'total_activity_minutes' => $total_activity_minutes,
             'per_day_work_limit' => $per_day_work_limit,
         );
 
@@ -102,12 +106,14 @@ class UserDashboardWidgetController extends BaseController
         $sql_leave_summary = "SELECT 
                                 MAX(created_at) as last_leave_taken_at
                                 , (SELECT COUNT(id) FROM user_leaves el2 WHERE el2.user_id = ? and el2.leave_type = 'absent') as total_absent
+                                , (SELECT COUNT(id) FROM user_leaves el2 WHERE el2.user_id = ? and el2.leave_type = 'sick_leave' AND el2.status <> 'pending') as total_sick_leave
+                                , (SELECT COUNT(id) FROM user_leaves el2 WHERE el2.user_id = ? and el2.leave_type = 'casual_leave' AND el2.status <> 'pending') as total_casual_leave
                                 , (SELECT COUNT(id) FROM user_leaves el2 WHERE el2.user_id = ? and el2.leave_type <> 'absent' AND el2.status = 'pending') as total_pending
                             FROM user_leaves el 
                             WHERE el.user_id = ?
                             LIMIT 1";
 
-        $result = $this->db->query($sql_leave_summary, array($user_id, $user_id, $user_id));
+        $result = $this->db->query($sql_leave_summary, array($user_id, $user_id, $user_id, $user_id, $user_id));
         $result = $result->getResult('array');
 
         if (count($result) > 0) {

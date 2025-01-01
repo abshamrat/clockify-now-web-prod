@@ -53,12 +53,12 @@ class UserDashboardWidgetController extends BaseController
     private function todaysWorkSummary($user_id)
     {
         $sql_todays_work = "SELECT 
-                    created_at as start_time
-                    , (SELECT MAX(created_at) FROM user_activities ua1 WHERE ua1.user_id = ? AND ua1.created_at >= CURRENT_DATE) as end_time
-                    , (SELECT SUM(ua2.activity_slot) FROM user_activities ua2 WHERE ua2.user_id = ? AND ua2.created_at >= CURRENT_DATE) as total_tracked_minutes
-                    , (SELECT SUM(ua3.activity_per_slot) FROM user_activities ua3 WHERE ua3.user_id = ? AND ua3.created_at >= CURRENT_DATE) as total_activity_minutes
+                    timestamp as start_time
+                    , (SELECT MAX(timestamp) FROM user_activities ua1 WHERE ua1.user_id = ? AND ua1.timestamp >= DATE(UTC_TIMESTAMP())) as end_time
+                    , (SELECT SUM(ua2.activity_slot) FROM user_activities ua2 WHERE ua2.user_id = ? AND ua2.timestamp >= DATE(UTC_TIMESTAMP())) as total_tracked_minutes
+                    , (SELECT SUM(ua3.activity_per_slot) FROM user_activities ua3 WHERE ua3.user_id = ? AND ua3.timestamp >= DATE(UTC_TIMESTAMP())) as total_activity_minutes
                 FROM user_activities ua WHERE 
-                    created_at >= CURRENT_DATE
+                DATE(`timestamp`) = DATE(UTC_TIMESTAMP())
                 AND ua.user_id = ?
                 LIMIT 1";
 
@@ -91,10 +91,10 @@ class UserDashboardWidgetController extends BaseController
 
     private function weeklyWorkSummary($user_id, $weekday_from, $weekday_to)
     {
-        $sql_weekly_work = "SELECT date(created_at) day_date, SUM(ua.activity_slot) total_activity  FROM user_activities ua 
-                WHERE created_at >= ? AND created_at <= ?
+        $sql_weekly_work = "SELECT date(timestamp) day_date, SUM(ua.activity_slot) total_activity  FROM user_activities ua 
+                WHERE timestamp >= ? AND timestamp <= ?
                 AND user_id = ?
-                GROUP BY date(created_at)";
+                GROUP BY date(timestamp)";
 
         $result_weekly = $this->db->query($sql_weekly_work, array($weekday_from,$weekday_to, $user_id));
 
@@ -133,13 +133,13 @@ class UserDashboardWidgetController extends BaseController
         // );
 
         $sql = "SELECT 
-            SUM(CASE WHEN DATE(created_at) = CURDATE() THEN activity_slot ELSE 0 END) AS today,
-            SUM(CASE WHEN YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1) THEN activity_slot ELSE 0 END) AS this_week,
-            SUM(CASE WHEN YEARWEEK(created_at, 1) = YEARWEEK(CURDATE(), 1) - 1 THEN activity_slot ELSE 0 END) AS last_week,
-            SUM(CASE WHEN created_at >= NOW() - INTERVAL 1 MONTH THEN activity_slot ELSE 0 END) AS this_month
+            SUM(CASE WHEN DATE(`timestamp`) = DATE(UTC_TIMESTAMP()) THEN activity_slot ELSE 0 END) AS today,
+            SUM(CASE WHEN YEARWEEK(timestamp, 1) = YEARWEEK(DATE(UTC_TIMESTAMP()), 1) THEN activity_slot ELSE 0 END) AS this_week,
+            SUM(CASE WHEN YEARWEEK(timestamp, 1) = YEARWEEK(DATE(UTC_TIMESTAMP()), 1) - 1 THEN activity_slot ELSE 0 END) AS last_week,
+            SUM(CASE WHEN timestamp >= UTC_TIMESTAMP() - INTERVAL 1 MONTH THEN activity_slot ELSE 0 END) AS this_month
         FROM 
             user_activities
-            WHERE user_id = ? AND created_at >= NOW() - INTERVAL 1 MONTH;";
+            WHERE user_id = ? AND timestamp >= UTC_TIMESTAMP() - INTERVAL 1 MONTH;";
 
         $result = $this->db->query($sql, array($user_id));
 
@@ -156,13 +156,13 @@ class UserDashboardWidgetController extends BaseController
         $date = $this->request->getVar('date');
 
         if (!$date) {
-            $date = "CURRENT_DATE";
+            $date = "DATE(UTC_TIMESTAMP())";
         }
 
         $sql_activity_logs = "SELECT 
                 at2.name as activity_name
                 , ua.memo
-                , ua.created_at
+                , ua.timestamp as created_at
                 , ua.activity_slot
                 , ua.activity_per_slot 
                 , ua.mouse_click
@@ -172,7 +172,7 @@ class UserDashboardWidgetController extends BaseController
             FROM user_activities ua
             INNER JOIN activity_types at2 ON at2.id  = ua.activity_id             
             WHERE ua.user_id = ?
-            AND DATE(ua.created_at) = ?
+            AND DATE(ua.timestamp) = ?
             ORDER BY ua.id ASC;
         ";
 
@@ -192,12 +192,12 @@ class UserDashboardWidgetController extends BaseController
         $sql_activity_logs = "SELECT 
                 at2.name as activity_name
                 , ua.memo
-                , ua.created_at
+                , ua.timestamp as created_at
                 , ua.activity_slot
             FROM user_activities ua
             INNER JOIN activity_types at2 ON at2.id  = ua.activity_id             
             WHERE ua.user_id = ?
-            AND ua.created_at >= CURRENT_DATE; -- change the date to last 24 hrs
+            AND DATE(ua.timestamp) >= DATE(UTC_TIMESTAMP()); -- change the date to last 24 hrs
         ";
 
         $result = $this->db->query($sql_activity_logs, array($user_id));

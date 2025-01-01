@@ -41,6 +41,7 @@ class TrackersController extends BaseController
 
         $tracked_data = [
             'user_id' => $this->request->auth_user->id,
+            'organization_id' => $this->request->auth_user->organization_id,
             'mouse_click' => $this->request->getVar('mouse_click') ?: 0,
             'mouse_scroll' => $this->request->getVar('mouse_scroll') ?: 0,
             'keyboard_activities' => $this->request->getVar('keyboard_activity') ?: 0,
@@ -50,6 +51,7 @@ class TrackersController extends BaseController
             'timestamp' => $this->request->getVar('timestamp'),
             'memo' => $this->request->getVar('memo') ?: '',
         ];
+
 
         $img = $this->request->getFile('screenshot');
         $thumbnail = $this->request->getFile('thumbnail');

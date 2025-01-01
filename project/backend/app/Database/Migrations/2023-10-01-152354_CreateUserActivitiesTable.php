@@ -31,6 +31,8 @@ class CreateUserActivitiesTable extends Migration
                 'type' => 'INT',
                 'constraint'     => 5,
                 'unsigned' => true,
+                'null' => true,
+                'default' =>  null
             ],
             'mouse_click' => [
                 'type' => 'INT',

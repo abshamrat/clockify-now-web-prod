@@ -52,7 +52,7 @@ class UsersController extends BaseController
         $user_this_week_worked = $this->db->query("
             SELECT IFNULL(SUM(activity_slot),0) as total_mins_this_week 
             FROM user_activities 
-            WHERE week(created_at)=week(now()) AND
+            WHERE week(timestamp)=week(now()) AND
             user_id = ?;", [
                 $this->request->auth_user->id
             ])->getRow();
@@ -60,7 +60,7 @@ class UsersController extends BaseController
         $user_today_worked = $this->db->query("
             SELECT IFNULL(SUM(activity_slot),0) as total_mins_today 
             FROM user_activities 
-            WHERE DATE(`created_at`) = CURDATE() AND
+            WHERE DATE(`timestamp`) = DATE(UTC_TIMESTAMP()) AND
             user_id = ?;", [
                 $this->request->auth_user->id
             ])->getRow();
@@ -92,6 +92,7 @@ class UsersController extends BaseController
             'first_name' => ['rules' => 'required|min_length[4]|max_length[255]'],
             'last_name' => ['rules' => 'required|min_length[4]|max_length[255]'],
             'designation_id' => ['rules' => 'required|min_length[1]|max_length[3]'],
+            'organization_id' => ['rules' => 'required|min_length[1]|max_length[3]'],
             'email' => ['rules' => 'required|min_length[4]|max_length[255]|valid_email|is_unique[users.email]'],
             'password' => ['rules' => 'required|min_length[8]|max_length[255]'],
             'confirm_password'  => [ 'label' => 'confirm password', 'rules' => 'matches[password]']
@@ -101,6 +102,7 @@ class UsersController extends BaseController
             // $model = new UserModel();
             $data = [
                 'email'    => $this->request->getVar('email'),
+                "organization_id" => $this->request->getVar('organization_id'),
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'role_id' => 1
             ];
